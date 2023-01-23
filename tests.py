@@ -1,1 +1,79 @@
-# заготовка под тесты
+# import pytest
+# from main import BooksCollector
+#
+# @pytest.fixture  # фикстура, которая создаёт коллекцию с 4 книгами, одна с рейтингом 7, одна в favorites
+# def my_collection():
+#     my_collection = BooksCollector()
+#     my_collection.add_new_book('Тихий дон')
+#     my_collection.add_new_book('Молодая гвардия')
+#     my_collection.add_new_book('Судьба человека')
+#     my_collection.add_new_book('Они сражались за родину')
+#     my_collection.set_book_rating('Они сражались за родину', 7)
+#     my_collection.add_book_in_favorites('Молодая гвардия')
+#
+#     return my_collection
+
+# проверка существования 1 метода "конструктора" __init__, также метода get_books_rating
+def test_books_rating_dict_exist(my_collection):
+    assert my_collection.books_rating == {'Молодая гвардия': 1,
+                                          'Судьба человека': 1,
+                                          'Тихий дон': 1,
+                                          'Они сражались за родину': 7}
+
+
+# проверка существования 2 метода "конструктора" __init__, а также метода get_list_of_favorites_books
+def test_favorites_list_exist(my_collection):
+    assert my_collection.favorites == ['Молодая гвардия']
+
+
+# проверка добвления книги - изменение словаря
+def test_add_new_book_new_book_books_rating_exist(my_collection):
+    my_collection.add_new_book('Поднятая целина')
+
+    assert my_collection.books_rating == {'Молодая гвардия': 1,
+                                          'Они сражались за родину': 7,
+                                          'Поднятая целина': 1,
+                                          'Судьба человека': 1,
+                                          'Тихий дон': 1}
+
+
+# проверка изменения рейтинга в диапазоне
+def test_set_book_rating_new_rate_books_rating_change(my_collection):
+    my_collection.set_book_rating('Тихий дон', 6)
+
+    assert my_collection.books_rating['Тихий дон'] == 6
+
+
+# проерка изменения рейтинга вне диапазона - рейтинг остается прежним
+def test_set_book_rating_rate_out_of_range_books_rating_no_change(my_collection):
+    my_collection.set_book_rating('Тихий дон', 22)
+
+    assert my_collection.books_rating['Тихий дон'] == 1
+
+
+# проверка изменения рейтинга у книги
+def test_get_book_rating_dic_name_value(my_collection):
+    my_collection.set_book_rating('Судьба человека', 7)
+
+    assert my_collection.books_rating['Они сражались за родину'] == 7
+
+
+# проверка списка книг по рейтингу
+def test_get_books_with_specific_rating_rate_list_exists(my_collection):
+    my_collection.set_book_rating('Судьба человека', 7)
+
+    assert my_collection.get_books_with_specific_rating(7) == ['Судьба человека', 'Они сражались за родину']
+
+
+# проверка добавления книги в список favorites
+def test_add_book_in_favorites_new_book_list_increase(my_collection):
+    my_collection.add_book_in_favorites('Они сражались за родину')
+    assert my_collection.favorites == ['Молодая гвардия', 'Они сражались за родину']
+
+
+# проверка удаления книги из списка favorites
+def test_delete_book_from_favorites_book_list_decrease(my_collection):
+    my_collection.delete_book_from_favorites('Молодая гвардия')
+
+    assert my_collection.favorites == []
+
