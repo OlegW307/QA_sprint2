@@ -24,8 +24,12 @@ t
 7. **test_get_books_with_specific_rating_rate_list_exists** - проверка списка книг по рейтингу
 
 
-8. **test_add_book_in_favorites_new_book_list_increase** - проверка добавления книги в список favorites
+Обьединение в класс (используется новая фикстура)
+9. **test_add_book_in_favorites_new_book_list_increase** - проверка добавления книги в список favorites
 
 
 9. **test_delete_book_from_favorites_book_list_decrease** - проверка удаления книги из списка favorites
 
+Проверка параметризованного теста (опционально)
+
+10. **test_set_books_with_specific_rating_rate_list_correct** - проверка добавления в список рейтинга с различными значениями 

@@ -1,4 +1,5 @@
 import pytest
+from main import BooksCollector
 
 
 # проверка существования 1 метода "конструктора" __init__, также метода get_books_rating
@@ -66,3 +67,13 @@ class TestFav:
         simple_collection.delete_book_from_favorites('Молодая гвардия')
 
         assert simple_collection.favorites == []
+
+# проверка параметризованого теста
+@pytest.mark.parametrize("name,rate", [('Судьба человека', 7), ('Молодая гвардия', 8), ('Поднятая целина', 9)])
+def test_set_books_with_specific_rating_rate_list_correct(name, rate):
+
+    rating_collection = BooksCollector()
+    rating_collection.add_new_book(name)
+    rating_collection.set_book_rating(name, rate)
+
+    assert rating_collection.books_rating[name] == rate
