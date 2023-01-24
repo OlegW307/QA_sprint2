@@ -1,6 +1,7 @@
 import pytest
 from main import BooksCollector
 
+
 @pytest.fixture  # фикстура, которая создаёт коллекцию с 4 книгами, одна с рейтингом 7, одна в favorites
 def my_collection():
     my_collection = BooksCollector()
@@ -12,3 +13,13 @@ def my_collection():
     my_collection.add_book_in_favorites('Молодая гвардия')
 
     return my_collection
+
+
+@pytest.fixture  # фикстура для провекри класса тестов
+def simple_collection():
+    simple_collection = BooksCollector()
+    simple_collection.add_new_book('Тихий дон')
+    simple_collection.add_new_book('Молодая гвардия')
+    simple_collection.add_book_in_favorites('Молодая гвардия')
+
+    return simple_collection
