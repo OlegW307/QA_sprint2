@@ -28,8 +28,11 @@ t
 9. **test_add_book_in_favorites_new_book_list_increase** - проверка добавления книги в список favorites
 
 
-9. **test_delete_book_from_favorites_book_list_decrease** - проверка удаления книги из списка favorites
+10. **test_delete_book_from_favorites_book_list_decrease** - проверка удаления книги из списка favorites
 
 Проверка параметризованного теста (опционально)
 
-10. **test_set_books_with_specific_rating_rate_list_correct** - проверка добавления в список рейтинга с различными значениями 
+11. **test_set_books_with_specific_rating_rate_list_correct** - проверка добавления в список рейтинга с различными значениями
+
+
+12. **test_new_books_add_with_rating_1** - проверка что новые книги добавляются с рейтингом 1

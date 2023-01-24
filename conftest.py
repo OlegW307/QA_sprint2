@@ -23,3 +23,8 @@ def simple_collection():
     simple_collection.add_book_in_favorites('Молодая гвардия')
 
     return simple_collection
+
+
+@pytest.fixture(params=['Тихий дон', 'Молодая гвардия', 'Они сражались за родину', 'Судьба человека'])
+def books_title(request):
+    return request.param

@@ -56,24 +56,32 @@ def test_get_books_with_specific_rating_rate_list_exists(my_collection):
 
 class TestFav:
     @pytest.mark.usefixtures('simple_collection')
-# проверка добавления книги в список favorites
+    # проверка добавления книги в список favorites
     def test_add_book_in_favorites_new_book_list_increase(self, simple_collection):
         simple_collection.add_book_in_favorites('Тихий дон')
 
         assert simple_collection.favorites == ['Молодая гвардия', 'Тихий дон']
 
-# проверка удаления книги из списка favorites
+    # проверка удаления книги из списка favorites
     def test_delete_book_from_favorites_book_list_decrease(self, simple_collection):
         simple_collection.delete_book_from_favorites('Молодая гвардия')
 
         assert simple_collection.favorites == []
 
+
 # проверка параметризованого теста
 @pytest.mark.parametrize("name,rate", [('Судьба человека', 7), ('Молодая гвардия', 8), ('Поднятая целина', 9)])
 def test_set_books_with_specific_rating_rate_list_correct(name, rate):
-
     rating_collection = BooksCollector()
     rating_collection.add_new_book(name)
     rating_collection.set_book_rating(name, rate)
 
     assert rating_collection.books_rating[name] == rate
+
+
+# проверка параметризованой фикстуры
+def test_new_books_add_with_rating_1(books_title):
+    super_collection = BooksCollector()
+    super_collection.add_new_book(books_title)
+
+    assert super_collection.books_rating[books_title] == 1
